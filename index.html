@@ -1,0 +1,241 @@
+import { motion } from 'framer-motion';
+import { useScrollReveal } from '../hooks/useScrollReveal';
+import { MiniSigil } from '../components/SacredGeometry';
+import GlowOrb from '../components/GlowOrb';
+import { fadeUpVariants, staggerContainer, cardVariants } from '../utils/animations';
+
+const services = [
+  {
+    id: 1,
+    icon: '⟁',
+    title: 'Karma Generator Removal',
+    price: '$340',
+    priceNote: 'Deep Structure Clearing',
+    description:
+      'Dissolves recurring karmic structures running beneath conscious experience — the source of repeated suffering, energetic stagnation, and destructive cycles.',
+    detail:
+      'This is the most foundational clearing available. Karmic generators are not mere patterns — they are active energetic machines that perpetually recreate suffering across time. Their removal is permanent.',
+    accent: 'orchid',
+    glow: 'rgba(176,79,200,',
+    badge: 'Core Work',
+  },
+  {
+    id: 2,
+    icon: '◬',
+    title: 'Limiting Block Removal',
+    price: '$5',
+    priceNote: 'Energetic Flow Restoration',
+    description:
+      'Removes energetic resistance and internal blocks restricting growth, clarity, confidence, and natural energetic flow.',
+    detail:
+      'These blocks manifest as inexplicable ceilings — in relationships, abundance, creative expression, and personal power. Once removed, the natural current is restored.',
+    accent: 'gold',
+    glow: 'rgba(201,168,76,',
+    badge: 'Foundation',
+  },
+  {
+    id: 3,
+    icon: '✶',
+    title: 'Demonic Removal',
+    price: '$10',
+    priceNote: 'Parasitic Severance',
+    description:
+      'Identifies and severs harmful parasitic energetic attachments interfering with emotional and spiritual stability.',
+    detail:
+      'Parasitic entities operate in the background — feeding on life force, distorting perception, and generating emotional turbulence. Their identification and removal restores stability at the root.',
+    accent: 'orchid',
+    glow: 'rgba(110,46,128,',
+    badge: 'Protective',
+  },
+  {
+    id: 4,
+    icon: '⬟',
+    title: 'Tarot Reading Using AI',
+    price: '$30',
+    priceNote: 'Hybrid Divination',
+    description:
+      'A hybrid spiritual reading combining intuitive tarot interpretation with AI-assisted symbolic analysis for deeper clarity and precision.',
+    detail:
+      'Ancient symbolic language meets modern pattern recognition. This reading delivers layered insight — the intuitive and the analytical operating in tandem for unparalleled clarity.',
+    accent: 'gold',
+    glow: 'rgba(201,168,76,',
+    badge: 'Insight',
+  },
+];
+
+export default function Services() {
+  const { ref, isInView } = useScrollReveal();
+
+  return (
+    <section
+      id="services"
+      ref={ref}
+      className="relative py-32 overflow-hidden"
+      style={{ zIndex: 1 }}
+    >
+      <GlowOrb color="rgba(176,79,200," size={800} x="10%" y="40%" blur={150} opacity={0.09} />
+      <GlowOrb color="rgba(201,168,76," size={600} x="85%" y="60%" blur={120} opacity={0.07} animate={false} />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
+        {/* Section header */}
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          className="text-center mb-20"
+        >
+          <motion.p variants={fadeUpVariants} custom={0} className="font-jost text-xs tracking-[0.35em] uppercase mb-4" style={{ color: 'rgba(201,168,76,0.7)' }}>
+            ◈ &nbsp; Sacred Offerings &nbsp; ◈
+          </motion.p>
+          <motion.h2 variants={fadeUpVariants} custom={0.1} className="font-cinzel mb-6" style={{ fontSize: 'clamp(1.8rem, 4vw, 3.2rem)' }}>
+            <span className="gradient-gold">Services &amp;</span>{' '}
+            <span className="gradient-orchid">Sessions</span>
+          </motion.h2>
+          <motion.p variants={fadeUpVariants} custom={0.2} className="font-playfair italic max-w-xl mx-auto" style={{ color: 'rgba(232,224,240,0.6)', fontSize: '1rem' }}>
+            Each offering targets a specific layer of the energetic field. Select what calls to you.
+          </motion.p>
+          <motion.div variants={fadeUpVariants} custom={0.25} className="divider max-w-xs mx-auto mt-8" />
+        </motion.div>
+
+        {/* Cards grid */}
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          className="grid md:grid-cols-2 gap-8"
+        >
+          {services.map((svc) => (
+            <motion.div
+              key={svc.id}
+              variants={cardVariants}
+              className="service-card glass glow-orchid group relative overflow-hidden"
+              style={{
+                border: `1px solid rgba(${svc.accent === 'orchid' ? '176,79,200' : '201,168,76'},0.2)`,
+              }}
+            >
+              {/* Animated border gradient on hover */}
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100"
+                style={{
+                  background: `radial-gradient(ellipse at top left, ${svc.glow}0.08) 0%, transparent 60%)`,
+                  transition: 'opacity 0.5s',
+                  pointerEvents: 'none',
+                }}
+              />
+
+              {/* Badge */}
+              <div className="absolute top-5 right-5">
+                <span
+                  className="font-jost text-xs tracking-widest uppercase px-3 py-1 rounded-full"
+                  style={{
+                    background: svc.accent === 'orchid' ? 'rgba(176,79,200,0.15)' : 'rgba(201,168,76,0.12)',
+                    border: `1px solid ${svc.accent === 'orchid' ? 'rgba(176,79,200,0.3)' : 'rgba(201,168,76,0.25)'}`,
+                    color: svc.accent === 'orchid' ? 'rgba(212,127,230,0.9)' : 'rgba(232,204,122,0.9)',
+                    fontSize: '0.62rem',
+                  }}
+                >
+                  {svc.badge}
+                </span>
+              </div>
+
+              <div className="p-8 md:p-10 relative z-10">
+                {/* Icon */}
+                <div className="flex items-start gap-5 mb-6">
+                  <div
+                    className="flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center"
+                    style={{
+                      background: `radial-gradient(circle, ${svc.glow}0.25) 0%, ${svc.glow}0.06) 70%)`,
+                      border: `1px solid ${svc.glow}0.35)`,
+                      fontSize: '1.6rem',
+                    }}
+                  >
+                    <span className={svc.accent === 'orchid' ? 'gradient-orchid' : 'gradient-gold'}>
+                      {svc.icon}
+                    </span>
+                  </div>
+                  <div>
+                    <h3
+                      className="font-cinzel text-sm tracking-wide mb-1"
+                      style={{ color: '#e8e0f0', letterSpacing: '0.06em', fontSize: 'clamp(0.85rem, 1.5vw, 1rem)' }}
+                    >
+                      {svc.title}
+                    </h3>
+                    <div className="flex items-baseline gap-2">
+                      <span
+                        className="font-cinzel text-xl"
+                        style={{
+                          background: svc.accent === 'orchid'
+                            ? 'linear-gradient(135deg, #d47fe6, #c9a84c)'
+                            : 'linear-gradient(135deg, #e8cc7a, #c9a84c)',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundClip: 'text',
+                        }}
+                      >
+                        {svc.price}
+                      </span>
+                      <span className="font-jost text-xs" style={{ color: 'rgba(232,224,240,0.4)' }}>
+                        / {svc.priceNote}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Divider */}
+                <div className="divider mb-5" style={{ background: `linear-gradient(90deg, transparent, ${svc.glow}0.4), transparent)` }} />
+
+                {/* Description */}
+                <p
+                  className="font-playfair italic mb-4 leading-relaxed"
+                  style={{ color: 'rgba(232,224,240,0.82)', fontSize: '0.95rem' }}
+                >
+                  {svc.description}
+                </p>
+                <p
+                  className="font-jost font-light leading-relaxed mb-8"
+                  style={{ color: 'rgba(232,224,240,0.5)', fontSize: '0.87rem' }}
+                >
+                  {svc.detail}
+                </p>
+
+                {/* CTA + mini sigil */}
+                <div className="flex items-center justify-between">
+                  <a
+                    href="https://ko-fi.com/blina123"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary btn-orchid text-xs"
+                    style={{
+                      cursor: 'none',
+                      background: svc.accent === 'orchid'
+                        ? 'linear-gradient(135deg, #8b2da8, #6e2e80)'
+                        : 'linear-gradient(135deg, #8a6820, #5a4510)',
+                      borderColor: svc.accent === 'orchid' ? 'rgba(176,79,200,0.5)' : 'rgba(201,168,76,0.5)',
+                    }}
+                  >
+                    Book via Ko-fi
+                  </a>
+                  <MiniSigil size={32} opacity={0.35} />
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Bottom note */}
+        <motion.p
+          variants={fadeUpVariants}
+          custom={0.5}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          className="text-center mt-14 font-jost font-light text-xs tracking-widest uppercase"
+          style={{ color: 'rgba(176,79,200,0.45)' }}
+        >
+          All sessions are conducted remotely. No physical presence required.
+        </motion.p>
+      </div>
+
+      <div className="divider absolute bottom-0 left-0 right-0" />
+    </section>
+  );
+}

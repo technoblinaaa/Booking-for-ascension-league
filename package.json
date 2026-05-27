@@ -1,0 +1,219 @@
+import { motion } from 'framer-motion';
+import { useScrollReveal } from '../hooks/useScrollReveal';
+import { MiniSigil } from '../components/SacredGeometry';
+import GlowOrb from '../components/GlowOrb';
+import { fadeUpVariants, staggerContainer, cardVariants } from '../utils/animations';
+
+const testimonials = [
+  {
+    quote:
+      'After karma removal generator session I felt huge relief! Frist I felt from chest like something heavy left me and my soul and chakras too and that if I do smth bad accidentally I dont experinece sandess and pain in soul etc. which is so amazing! Secondly I felt huge amount of positive vibes flowing thru me and all my chakras and meridians like warm white light insinde and outside me and I became positive and cured from chronic depression! I recommend for everyone!',
+    name: 'luka cherub',
+    date: '12:00 pm · 4/21/2026',
+    service: 'Karma Generator Removal',
+    accent: 'orchid',
+    stars: 5,
+  },
+];
+
+const stats = [
+  { value: '100%', label: 'Remote Sessions' },
+  { value: '∞', label: 'Field Depth' },
+  { value: '4', label: 'Clearing Stages' },
+  { value: '24h', label: 'Response Time' },
+];
+
+export default function Testimonials() {
+  const { ref, isInView } = useScrollReveal();
+
+  return (
+    <section
+      id="testimonials"
+      ref={ref}
+      className="relative py-32 overflow-hidden"
+      style={{ zIndex: 1 }}
+    >
+      <GlowOrb color="rgba(176,79,200," size={700} x="80%" y="30%" blur={130} opacity={0.1} />
+      <GlowOrb color="rgba(201,168,76," size={500} x="10%" y="70%" blur={100} opacity={0.07} animate={false} />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12">
+        {/* Header */}
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          className="text-center mb-20"
+        >
+          <motion.p variants={fadeUpVariants} custom={0} className="font-jost text-xs tracking-[0.35em] uppercase mb-4" style={{ color: 'rgba(201,168,76,0.7)' }}>
+            ◈ &nbsp; Field Reports &nbsp; ◈
+          </motion.p>
+          <motion.h2 variants={fadeUpVariants} custom={0.1} className="font-cinzel mb-6" style={{ fontSize: 'clamp(1.8rem, 4vw, 3.2rem)' }}>
+            <span className="gradient-orchid">Those Who Have</span>{' '}
+            <span className="gradient-gold">Cleared</span>
+          </motion.h2>
+          <motion.p variants={fadeUpVariants} custom={0.2} className="font-playfair italic max-w-lg mx-auto" style={{ color: 'rgba(232,224,240,0.6)', fontSize: '1rem' }}>
+            The results speak with a clarity that requires no embellishment.
+          </motion.p>
+          <motion.div variants={fadeUpVariants} custom={0.25} className="divider max-w-xs mx-auto mt-8" />
+        </motion.div>
+
+        {/* Stats row */}
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
+        >
+          {stats.map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              variants={fadeUpVariants}
+              custom={i * 0.1}
+              className="glass text-center py-6 px-4 border-pulse"
+            >
+              <div className="font-cinzel text-2xl md:text-3xl gradient-orchid mb-1">{stat.value}</div>
+              <div className="font-jost text-xs tracking-widest uppercase" style={{ color: 'rgba(232,224,240,0.45)' }}>
+                {stat.label}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Testimonial cards */}
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          className="flex justify-center"
+        >
+          {testimonials.map((t, i) => (
+            <motion.div
+              key={i}
+              variants={cardVariants}
+              className="relative max-w-3xl w-full"
+            >
+              {/* Outer glow */}
+              <div
+                className="absolute -inset-px rounded-2xl"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(176,79,200,0.35), rgba(201,168,76,0.2), rgba(176,79,200,0.1))',
+                  filter: 'blur(1px)',
+                }}
+              />
+
+              <div
+                className="relative glass p-10 md:p-14"
+                style={{
+                  border: '1px solid rgba(176,79,200,0.3)',
+                  boxShadow: '0 0 60px rgba(176,79,200,0.15), 0 0 120px rgba(176,79,200,0.06)',
+                }}
+              >
+                {/* Service badge */}
+                <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
+                  <span
+                    className="font-jost text-xs tracking-widest uppercase px-4 py-1.5 rounded-full"
+                    style={{
+                      background: 'rgba(176,79,200,0.15)',
+                      border: '1px solid rgba(176,79,200,0.3)',
+                      color: 'rgba(212,127,230,0.9)',
+                    }}
+                  >
+                    {t.service}
+                  </span>
+                  {/* Stars */}
+                  <div className="flex gap-1">
+                    {Array.from({ length: t.stars }).map((_, si) => (
+                      <span key={si} className="gradient-gold text-sm">✦</span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Opening quote mark */}
+                <div
+                  className="font-playfair text-8xl leading-none mb-2 -mt-4"
+                  style={{ color: 'rgba(176,79,200,0.2)', fontStyle: 'italic', lineHeight: 0.7 }}
+                >
+                  "
+                </div>
+
+                {/* Quote text */}
+                <blockquote
+                  className="font-playfair leading-relaxed mb-8"
+                  style={{
+                    fontSize: 'clamp(1rem, 2vw, 1.15rem)',
+                    color: 'rgba(232,224,240,0.88)',
+                    fontStyle: 'italic',
+                  }}
+                >
+                  {t.quote}
+                </blockquote>
+
+                {/* Closing divider */}
+                <div className="divider mb-8" />
+
+                {/* Author */}
+                <div className="flex items-center gap-5">
+                  {/* Avatar sigil */}
+                  <div
+                    className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+                    style={{
+                      background: 'radial-gradient(circle, rgba(176,79,200,0.3) 0%, rgba(110,46,128,0.1) 70%)',
+                      border: '1px solid rgba(176,79,200,0.4)',
+                    }}
+                  >
+                    <MiniSigil size={24} opacity={0.8} />
+                  </div>
+                  <div>
+                    <p className="font-cinzel text-sm tracking-wide gradient-orchid" style={{ letterSpacing: '0.08em' }}>
+                      {t.name}
+                    </p>
+                    <p className="font-jost text-xs mt-0.5" style={{ color: 'rgba(201,168,76,0.55)' }}>
+                      {t.date}
+                    </p>
+                  </div>
+                  {/* Verified */}
+                  <div className="ml-auto">
+                    <span
+                      className="font-jost text-xs tracking-widest uppercase px-3 py-1 rounded-full"
+                      style={{
+                        background: 'rgba(201,168,76,0.1)',
+                        border: '1px solid rgba(201,168,76,0.25)',
+                        color: 'rgba(232,204,122,0.7)',
+                      }}
+                    >
+                      Verified
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Invitation */}
+        <motion.div
+          variants={fadeUpVariants}
+          custom={0.6}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          className="text-center mt-16"
+        >
+          <p className="font-jost font-light text-sm mb-6" style={{ color: 'rgba(232,224,240,0.45)' }}>
+            Experience what becomes possible when the field is clear.
+          </p>
+          <a
+            href="https://ko-fi.com/blina123"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary btn-orchid"
+            style={{ cursor: 'none' }}
+          >
+            Book Your Session
+          </a>
+        </motion.div>
+      </div>
+
+      <div className="divider absolute bottom-0 left-0 right-0" />
+    </section>
+  );
+}
